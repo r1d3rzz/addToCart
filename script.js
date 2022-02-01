@@ -11,7 +11,7 @@ const products = [
   {
     name: "Black Hoddie",
     tag: "blackHoddie",
-    price: 25,
+    price: 20,
     inCart: 0,
   },
   {
@@ -31,7 +31,20 @@ const products = [
 for (let i = 0; i < cartBtn.length; i++) {
   cartBtn[i].addEventListener("click", function () {
     cartNumber(products[i]);
+    totalPrices(products[i]);
   });
+}
+
+function totalPrices(prodcut) {
+  let totalPrices = localStorage.getItem("totalPrices");
+  totalPrices = Number(totalPrices);
+  if (totalPrices) {
+    totalPrices += prodcut.price;
+  } else {
+    totalPrices = prodcut.price;
+  }
+
+  localStorage.setItem("totalPrices", totalPrices);
 }
 
 function cartNumber(product) {
